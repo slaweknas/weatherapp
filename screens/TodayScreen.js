@@ -1,59 +1,59 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import { ToDayCardComponent, DetailComponent } from '../components';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
+import GestureRecognizer, {
+  swipeDirections
+} from "react-native-swipe-gestures";
+import { ToDayCardComponent, DetailComponent } from "../components";
 
 export default class HomeScreen extends React.Component {
-
   static navigationOptions = {
-    title: 'Today Screen',
+    title: "Today Screen",
     headerStyle: {
-      backgroundColor: '#2089DC',
+      backgroundColor: "#2089DC"
     },
-    headerTintColor: '#fff',
+    headerTintColor: "#fff",
     headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+      fontWeight: "bold"
+    }
   };
 
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        isLoaded: false,
-        error: null,
-        latitude: 0,
-        longitude: 0,
-      };
+    this.state = {
+      isLoaded: false,
+      error: null,
+      latitude: 0,
+      longitude: 0
+    };
   }
 
   componentDidMount() {
-    console.log('TODAY');
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          error: null,
+          error: null
         });
       },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      error => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
 
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <GestureRecognizer
-        onSwipeLeft={() => navigate('WeekScreen')}
+        onSwipeLeft={() => navigate("WeekScreen")}
         style={styles.container}
         velocityThreshold={0.1}
         distanceThreshold={20}
         angleThreshold={60}
-        >
+      >
         <View style={styles.textContainer}>
           <ToDayCardComponent
             latitude={this.state.latitude}
@@ -63,14 +63,8 @@ export default class HomeScreen extends React.Component {
         <View style={styles.buttonContainer}>
           <Button
             buttonStyle={styles.button}
-            icon={
-              <Icon
-                name="arrow-right"
-                size={25}
-                color="white"
-              />
-            }
-            onPress={()=>navigate('WeekScreen')}
+            icon={<Icon name="arrow-right" size={25} color="white" />}
+            onPress={() => navigate("WeekScreen")}
           />
         </View>
       </GestureRecognizer>
@@ -81,17 +75,17 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff"
   },
   textContainer: {
     flex: 4,
-    padding: 50,
+    padding: 50
   },
-  buttonContainer : {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end'
+  buttonContainer: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end"
   },
-  button : {
+  button: {
     height: 70,
     width: 70,
     margin: 30,

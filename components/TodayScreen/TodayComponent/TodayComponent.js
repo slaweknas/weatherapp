@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { API_KEY } from 'react-native-dotenv'
+import { API_KEY } from "react-native-dotenv";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class ToDayCardComponent extends React.Component {

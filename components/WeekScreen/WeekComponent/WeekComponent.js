@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { API_KEY } from 'react-native-dotenv'
+import { API_KEY } from "react-native-dotenv";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { DayCardComponent } from "../..";
+import { DayCardComponent } from "../DayCardComponent/DayCardComponent";
 
 export default class WeekComponent extends React.Component {
   constructor(props) {
